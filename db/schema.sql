@@ -24,5 +24,3 @@ CREATE TEMPORARY TABLE taken (
   user_id INT NOT NULL REFERENCES users(id),
   datetime TIMESTAMP NOT NULL
 );
-
-SELECT * FROM medicines;
