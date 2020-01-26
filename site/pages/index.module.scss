@@ -1,0 +1,10 @@
+.title {
+  font-size: 3rem;
+  font-style: italic;
+}
+
+@media (min-width: 768px) {
+  .flexContainer {
+    display: flex;
+  }
+}
