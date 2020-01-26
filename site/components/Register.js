@@ -1,4 +1,6 @@
 import styles from './Register.module.scss'
+import fetch from 'isomorphic-unfetch'
+import axios from 'axios'
 
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 
@@ -39,30 +41,53 @@ const Basic = () => (
     <p className={styles.note}>All fields are required</p>
     <Formik
       initialValues={{
-        name: '',
+        medicine: '',
         days: undefined,
         time: ''
       }}
       validate={values => {
         //[0-9][0-9]:[0-9][0-9]
         const errors = {}
-        if (!values.name) {
-          errors.name = 'Name of medicine is required.'
+        if (!values.medicine) {
+          errors.medicine = 'Name of medicine is required.'
         }
         if (values.days == undefined) {
           errors.days = 'Please choose at least one day to schedule.'
         }
-        if (!/^[0-2][0-9]:[0-6][0-9]$/.test(values.time)) {
+        if (!/^[0-2]?[0-9]:[0-6][0-9]$/.test(values.time)) {
           errors.time = 'Please enter a valid time.'
         }
         return errors
       }}
       onSubmit={(values, { setSubmitting, resetForm }) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2)) // put cool post stuff here
-          resetForm()
-          setSubmitting(false)
-        }, 400)
+        var authOptions = {
+          method: 'POST',
+          url: 'http://localhost:5000/add-schedule',
+          data: JSON.stringify(values, null, 2),
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          json: true
+        }
+
+        axios(authOptions)
+          .post(
+            'http://localhost:5000/add-schedule',
+            JSON.stringify(values, null, 2)
+          )
+          .then(res => {
+            console.log(res)
+            console.log(res.data)
+            location.reload()
+          })
+          .catch(function(error) {
+            location.reload()
+            console.log(error)
+          })
+        alert('end submission')
+
+        resetForm()
+        setSubmitting(false)
       }}
     >
       {({ isSubmitting }) => (
@@ -89,13 +114,13 @@ const Basic = () => (
             Select days to receive reminders:
           </p>
           <div className={styles.flexContainer}>
-            <Checkbox name="days" type="checkbox" message="S" value="S" />
+            <Checkbox name="days" type="checkbox" message="S" value="U" />
             <Checkbox name="days" type="checkbox" message="M" value="M" />
             <Checkbox name="days" type="checkbox" message="T" value="T" />
             <Checkbox name="days" type="checkbox" message="W" value="W" />
             <Checkbox name="days" type="checkbox" message="T" value="R" />
             <Checkbox name="days" type="checkbox" message="F" value="F" />
-            <Checkbox name="days" type="checkbox" message="S" value="U" />
+            <Checkbox name="days" type="checkbox" message="S" value="S" />
           </div>
           <br />
           <button

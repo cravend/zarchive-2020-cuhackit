@@ -17,17 +17,16 @@ const UpcomingDay = ({ name, date, medicines }) => (
       <h3>{name}</h3>
       <p>{date}</p>
     </div>
-    {medicines.length == 0 ? (
-      <div>{medicines.length}</div>
-    ) : (
-      <div>{medicines.length}</div>
-    )}
     <ul>
       {Object.entries(medicines).map(([key, value]) => {
         let uniqueId = key + date + value[1]
         return (
           <li className={styles.medicine} key={uniqueId}>
-            {key} &mdash; {formatDate(value[1])}
+            {key}
+            <br />
+            <em>
+              <small>{formatDate(value[1])}</small>
+            </em>
           </li>
         )
       })}
