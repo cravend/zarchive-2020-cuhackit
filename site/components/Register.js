@@ -32,6 +32,7 @@ const Element = ({ name, type, message, value }) => (
 
 const Basic = () => (
   <div>
+    <h2>Add New Medicine</h2>
     <Formik
       initialValues={{
         name: '',
@@ -65,13 +66,13 @@ const Basic = () => (
           <ErrorMessage name="name" component="div" />
           <ErrorMessage name="days" component="div" />
           <div style={{ display: 'flex' }}>
-            <Checkbox name="days" type="checkbox" message="S" value="sun" />
-            <Checkbox name="days" type="checkbox" message="M" value="mon" />
-            <Checkbox name="days" type="checkbox" message="T" value="tue" />
-            <Checkbox name="days" type="checkbox" message="W" value="wed" />
-            <Checkbox name="days" type="checkbox" message="T" value="thu" />
-            <Checkbox name="days" type="checkbox" message="F" value="fri" />
-            <Checkbox name="days" type="checkbox" message="S" value="sat" />
+            <Checkbox name="days" type="checkbox" message="S" value="S" />
+            <Checkbox name="days" type="checkbox" message="M" value="M" />
+            <Checkbox name="days" type="checkbox" message="T" value="T" />
+            <Checkbox name="days" type="checkbox" message="W" value="W" />
+            <Checkbox name="days" type="checkbox" message="T" value="R" />
+            <Checkbox name="days" type="checkbox" message="F" value="F" />
+            <Checkbox name="days" type="checkbox" message="S" value="U" />
           </div>
           <ErrorMessage name="time" component="div" />
 
