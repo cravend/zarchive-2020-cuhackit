@@ -80,9 +80,9 @@ def notifications_for_week(user, start_day):
     WHERE user_id =  %(user)s
     """
     medicines = connection.all(sql, user=user)
-    d = {}
-    for day in DAYS:
-        d[day] = {}
+    d = []
+    for i in range(len(DAYS)):
+        d.append({})
     for med_name, med_id, med_days, med_time in medicines:
         sql = """
         WITH taken_meds AS (
@@ -109,7 +109,7 @@ def notifications_for_week(user, start_day):
         taken = connection.one(sql, (user, med_id) + (start_day,)*7)
         for i, day in enumerate(DAYS):
             if day in med_days:
-                d[day][med_name] = [
+                d[i][med_name] = [
                     bool(taken[i]),
                     str(med_time)[:5],
                 ]
