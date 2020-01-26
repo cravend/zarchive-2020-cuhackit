@@ -1,3 +1,4 @@
+import Checkbox from '../components/Checkbox'
 import styles from './Day.module.scss'
 
 function formatDate(date) {
@@ -13,8 +14,10 @@ function formatDate(date) {
 
 const Day = ({ name, medicine }) => (
   <div className={styles.box}>
+    <h2>{name}</h2>
     <ul>
       <li>
+        <Checkbox name={medicine.name} />
         {medicine.name} &mdash; <em>{formatDate(medicine.time)}</em>
       </li>
     </ul>
