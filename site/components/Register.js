@@ -9,7 +9,6 @@ const Checkbox = ({ name, type, message, value }) => (
       name={name}
       id={value ? value : name}
       value={value ? value : undefined}
-      hidden
     />
     <label htmlFor={value ? value : name}>{message}</label>
   </div>

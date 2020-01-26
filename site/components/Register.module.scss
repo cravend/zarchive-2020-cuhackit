@@ -1,4 +1,8 @@
 .dateButton {
+  input,
+  span {
+    display: none;
+  }
   label {
     display: block;
     margin: 0;
