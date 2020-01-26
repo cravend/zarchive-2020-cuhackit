@@ -1,0 +1,11 @@
+.dateButton {
+  margin: 10px 5px;
+  label {
+    border: 1px solid black;
+    padding: 5px;
+  }
+  input:checked + label {
+    background-color: #911;
+    color: #fff;
+  }
+}
