@@ -1,3 +1,4 @@
+import datetime
 import os
 from postgres import Postgres
 from psycopg2.errors import UniqueViolation
@@ -37,20 +38,22 @@ def add_medicine(name, details=None):
                 name=name)
 
 def add_schedule(user, medicine, weekdays, time):
+    med_id = add_medicine(medicine)
     sql = """
     INSERT INTO schedules (user_id, medicine, weekdays, time_taken)
         VALUES (%s, %s, %s, %s)
     RETURNING id
     """
-    return connection.one(sql, (user, medicine, weekdays, time))
+    return connection.one(sql, (user, med_id, weekdays, time))
 
 def add_taken(user, medicine, time):
+    med_id = add_medicine(medicine)
     sql = """
     INSERT INTO taken (user_id, medicine, datetime)
     VALUES (%s, %s, %s)
     RETURNING id
     """
-    return connection.one(sql, (user, medicine, time))
+    return connection.one(sql, (user, med_id, time))
 
 """
 [
@@ -94,20 +97,21 @@ def notifications_for_week(user, start_day):
             -- day 1
             (SELECT count(*) FROM taken_meds WHERE day = %s) AS one,
             -- day 2
-            (SELECT count(*) FROM taken_meds WHERE day = date_trunc('day', %s::timestamp + interval '2' day)) AS two,
+            (SELECT count(*) FROM taken_meds WHERE day = date_trunc('day', %s::timestamp + interval '1' day)) AS two,
             -- day 3
-            (SELECT count(*) FROM taken_meds WHERE day = %s::timestamp + interval '3' day) AS three,
+            (SELECT count(*) FROM taken_meds WHERE day = %s::timestamp + interval '2' day) AS three,
             -- day 4
-            (SELECT count(*) FROM taken_meds WHERE day = %s::timestamp + interval '4' day) AS four,
+            (SELECT count(*) FROM taken_meds WHERE day = %s::timestamp + interval '3' day) AS four,
             -- day 5
-            (SELECT count(*) FROM taken_meds WHERE day = %s::timestamp + interval '5' day) AS five,
+            (SELECT count(*) FROM taken_meds WHERE day = %s::timestamp + interval '4' day) AS five,
             -- day 6
-            (SELECT count(*) FROM taken_meds WHERE day = %s::timestamp + interval '6' day) AS six,
+            (SELECT count(*) FROM taken_meds WHERE day = %s::timestamp + interval '5' day) AS six,
             -- day 7
-            (SELECT count(*) FROM taken_meds WHERE day = %s::timestamp + interval '7' day) as seven
+            (SELECT count(*) FROM taken_meds WHERE day = %s::timestamp + interval '6' day) as seven
         """
         taken = connection.one(sql, (user, med_id) + (start_day,)*7)
-        for i, day in enumerate(DAYS):
+        today = datetime.datetime.today().weekday()
+        for i, day in enumerate(DAYS[today:] + DAYS[:today]):
             if day in med_days:
                 d[i][med_name] = [
                     bool(taken[i]),

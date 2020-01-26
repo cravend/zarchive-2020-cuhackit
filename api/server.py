@@ -17,6 +17,7 @@ def add_medicine_handler():
 def add_schedule_handler():
     data = request.json
     user, medicine, days, time = data.get('user', 1), data['medicine'], data['days'], data['time']
+    days = ''.join(days)
     id = api.add_schedule(user, medicine, days, time)
     return jsonify({ 'id': id })
 
