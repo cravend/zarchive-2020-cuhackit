@@ -1,0 +1,7 @@
+usage:
+
+```
+sudo apt install postgresql
+pip install -r requirements.txt
+DB_PASS='pass' python test.py
+```
