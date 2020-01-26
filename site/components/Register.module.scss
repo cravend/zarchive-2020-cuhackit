@@ -1,3 +1,10 @@
+@import 'theme/variables';
+
+.container {
+  flex: 1;
+  margin: 0 10px;
+}
+
 .dateButton {
   input,
   span {
@@ -5,14 +12,83 @@
   }
   label {
     display: block;
-    margin: 0;
     border: 1px solid black;
+    margin: 0;
     width: 30px;
     padding: 5px 0;
     text-align: center;
+    transition: 0.2s all;
+    background-color: #fff;
+    &:hover {
+      color: $primary;
+    }
   }
   input:checked + label {
-    background-color: #911;
+    background-color: $primary;
     color: #fff;
+  }
+}
+
+.required {
+  color: red;
+}
+
+.flexContainer {
+  display: flex;
+}
+
+.formContainer {
+  justify-content: space-between;
+}
+
+.element {
+  flex: 1;
+  margin: 5px;
+}
+
+.elementLabel {
+  display: block;
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+}
+
+.note {
+  margin-top: 0;
+  font-style: italic;
+}
+
+.fieldStyle {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  padding: 8px;
+  outline: none;
+  border: 1px solid $primary;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  width: 100%;
+  // max-width: 100%;
+
+  &:focus {
+    box-shadow: 0 0 5px $primary;
+    border: 1px solid $primary;
+  }
+}
+
+.submitButton {
+  border: 2px solid $primary;
+  background-color: white;
+  display: inline-block;
+  color: $primary;
+  padding: 10px 20px;
+  text-decoration: none;
+  transition: 0.2s all;
+  font-size: 1rem;
+
+  &:hover {
+    color: white;
+    background-color: $primary;
   }
 }

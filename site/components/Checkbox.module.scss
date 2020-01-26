@@ -17,8 +17,14 @@
     text-align: center;
     width: 25px;
     height: 25px;
+    transition: 0.2s all;
+    background-color: #fff;
+    &:hover {
+      border-color: $primary;
+    }
   }
   input:checked + label {
-    background-color: #911;
+    background-color: $primary;
+    border-color: $primary;
   }
 }

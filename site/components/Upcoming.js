@@ -1,10 +1,11 @@
 import styles from './Upcoming.module.scss'
 
 const Day = ({ name, date, medicine }) => (
-  <div className={styles.flexItem}>
-    <h3>
-      {name} &mdash; {date}
-    </h3>
+  <div className={styles.dayBox}>
+    <div className={styles.head}>
+      <h3>{name}</h3>
+      <p>{date}</p>
+    </div>
     <ul>
       <li>Medicine 1</li>
       <li>medicine 2</li>
