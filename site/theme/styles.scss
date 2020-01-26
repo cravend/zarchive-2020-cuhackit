@@ -1,0 +1,19 @@
+@import 'fonts';
+
+body {
+  font-family: 'Open Sans', 'SF Pro Text', 'SF Pro Icons', system-ui;
+  margin: 0;
+  padding: 10px;
+}
+
+h1,
+h2 {
+  font-family: 'Bebas Neue';
+  margin-top: 0;
+}
+
+@media (min-width: 768px) {
+  .flexContainer {
+    display: flex;
+  }
+}

@@ -1,7 +1,7 @@
 import Container from '../components/Container'
 import Day from '../components/Day'
 import Register from '../components/Register'
-import styles from '../styles.scss'
+import styles from '../theme/styles.scss'
 
 function HomePage() {
   return (
