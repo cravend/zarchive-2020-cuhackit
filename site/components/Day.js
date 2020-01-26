@@ -12,10 +12,12 @@ function formatDate(date) {
   return hour + ':' + split[1] + ' ' + label
 }
 
-const Day = ({ name, medicine }) => (
+const Day = ({ name, date, medicine }) => (
   <div className={styles.box}>
-    <h2>{name}</h2>
-    <ul>
+    <h2>
+      {name} &mdash; {date}
+    </h2>
+    <ul className={styles.medicineChecklist}>
       <li>
         <Checkbox name={medicine.name} />
         {medicine.name} &mdash; <em>{formatDate(medicine.time)}</em>

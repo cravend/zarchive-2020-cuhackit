@@ -1,0 +1,10 @@
+.flexContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.flexItem {
+  border: 1px dotted black;
+  flex: 1;
+}
