@@ -8,11 +8,17 @@
   margin: 0 10px;
 }
 
+.medicine {
+  text-transform: capitalize;
+}
+
 .dayBox {
   margin: 5px;
   flex: 1;
+  flex-basis: 20%;
   background-color: white;
   // padding: 5px;
+  // min-width: 200px;
   border-radius: 5px;
   border: 1px solid black;
   // background-color: $accent;

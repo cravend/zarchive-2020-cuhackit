@@ -67,12 +67,16 @@ const Basic = () => (
     >
       {({ isSubmitting }) => (
         <Form>
-          <ErrorMessage name="name" component={Error} />
+          <ErrorMessage name="medicine" component={Error} />
           <ErrorMessage name="days" component={Error} />
           <ErrorMessage name="time" component={Error} />
 
           <div className={styles.flexContainer}>
-            <Element name="name" type="text" message="Enter medicine name:" />
+            <Element
+              name="medicine"
+              type="text"
+              message="Enter medicine name:"
+            />
 
             <Element
               name="time"

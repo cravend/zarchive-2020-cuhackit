@@ -1,3 +1,5 @@
+import React from 'react'
+
 import Checkbox from '../components/Checkbox'
 import styles from './Day.module.scss'
 
@@ -12,16 +14,21 @@ function formatDate(date) {
   return hour + ':' + split[1] + ' ' + label
 }
 
-const Day = ({ name, date, medicine }) => (
+const Day = ({ name, date, medicines }) => (
   <div className={styles.box}>
     <h2>
       {name} &mdash; {date}
     </h2>
     <ul className={styles.medicineChecklist}>
-      <li>
-        <Checkbox name={medicine.name} />
-        {medicine.name} &mdash; <em>{formatDate(medicine.time)}</em>
-      </li>
+      {Object.entries(medicines).map(([key, value]) => {
+        let uniqueId = key + date + value[1]
+        return (
+          <li key={uniqueId}>
+            <Checkbox name={uniqueId} />
+            {key} &mdash; {formatDate(value[1])}
+          </li>
+        )
+      })}
     </ul>
   </div>
 )
