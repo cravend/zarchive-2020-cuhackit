@@ -1,10 +1,22 @@
 import styles from './Day.module.scss'
 
-const Day = ({ name, details }) => (
+function formatDate(date) {
+  var split = date.split(':')
+  var hour = parseInt(split)
+  var label = hour >= 12 ? 'PM' : 'AM'
+  hour = hour % 12
+  if (hour == 0) {
+    hour++
+  }
+  return hour + ':' + split[1] + ' ' + label
+}
+
+const Day = ({ name, medicine }) => (
   <div className={styles.box}>
-    <h1>{name}</h1>
     <ul>
-      <li>{details}</li>
+      <li>
+        {medicine.name} &mdash; <em>{formatDate(medicine.time)}</em>
+      </li>
     </ul>
   </div>
 )
