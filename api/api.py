@@ -53,12 +53,12 @@ def add_taken(user, medicine, time):
     return connection.one(sql, (user, medicine, time))
 
 """
-{
-    'mon': {
+[
+    {
         'atorvastatin': { taken: true, time: '22:00' },
         'tretonin': { taken: false, time: '7:00' },
     }
-}
+]
 NOTE: for a week that looks like this:
 ```
 M: 21, T: 22, W: 23, ...
