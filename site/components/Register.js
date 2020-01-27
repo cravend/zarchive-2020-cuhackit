@@ -20,7 +20,7 @@ const Checkbox = ({ name, type, message, value }) => (
   </div>
 )
 
-const Element = ({ name, type, message, value }) => (
+const Element = ({ name, type, message, value, placeholder }) => (
   <div className={styles.element}>
     <label htmlFor={value ? value : name} className={styles.elementLabel}>
       {message}
@@ -30,6 +30,7 @@ const Element = ({ name, type, message, value }) => (
       type={type}
       name={name}
       id={value ? value : name}
+      placeholder={placeholder}
       value={value ? value : undefined}
     />
   </div>
@@ -100,13 +101,15 @@ const Basic = () => (
             <Element
               name="medicine"
               type="text"
-              message="Enter medicine name:"
+              message="Enter the name of medicine to add:"
+              placeholder="Medicine Name"
             />
 
             <Element
               name="time"
               type="time"
               message="Enter time for reminder (00:00):"
+              placeholder="13:00"
             />
           </div>
           <br />
